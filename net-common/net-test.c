@@ -79,7 +79,7 @@ void initNetwork()
   uip_listen(uip_htons(23));
 }
 
-static void mainTask(void *arg)
+void mainTask(void *arg)
 {
   nosPrint("Main task startup.\n");
 
@@ -88,11 +88,5 @@ static void mainTask(void *arg)
     posTaskSleep(MS(10000));
 }
 
-int main(int argc, char **argv)
-{
-  uosInit();
-  nosInit(mainTask, NULL, 10, 600, 200);
-  return 0;
-}
 
 

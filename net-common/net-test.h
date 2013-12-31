@@ -29,4 +29,5 @@
  */
 
 void shellTask(void* arg);
+void mainTask(void* arg);
 void initNetwork(void);
