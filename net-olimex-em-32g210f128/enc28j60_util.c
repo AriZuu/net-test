@@ -28,6 +28,10 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * ENC28J60 driver utility functions for Olimex EM-32G210F128-H + UEXT ENC28J60 module.
+ */
+
 #include <picoos.h>
 #include <picoos-net.h>
 #include <picoos-u.h>
