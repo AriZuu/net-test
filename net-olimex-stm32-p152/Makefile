@@ -42,7 +42,9 @@ NANO = 1
 TARGET = net
 COMMON_SRC=../net-common
 SRC_TXT =	 	$(COMMON_SRC)/net-test.c \
-						$(COMMON_SRC)/shell.c
+						$(COMMON_SRC)/shell.c \
+						main.c \
+						enc28j60_util.c
 		
 SRC_HDR = 
 SRC_OBJ =
@@ -58,8 +60,10 @@ export CMSIS_DEFINES
 export CMSIS_INCLUDES
 
 DIR_USRINC +=	$(RELROOT)/../picoos-micro  \
+							$(COMMON_SRC) \
 							$(RELROOT)/../picoos-micro/fat/src \
-							$(RELROOT)/../picoos-net
+							$(RELROOT)/../picoos-net \
+							$(RELROOT)/../picoos-net/drivers
 
 DIR_CONFIG = $(CURRENTDIR)/config
 DIR_OUTPUT = $(CURRENTDIR)/bin

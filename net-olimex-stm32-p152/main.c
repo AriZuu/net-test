@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2012-2013, Ari Suutari <ari@stonepile.fi>.
- * All rights reserved.
- *
+ * Copyright (c) 2006-2013, Ari Suutari <ari@stonepile.fi>.
+ * All rights reserved. 
+ * 
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
+ * 
  *  1. Redistributions of source code must retain the above copyright
  *     notice, this list of conditions and the following disclaimer.
  *  2. Redistributions in binary form must reproduce the above copyright
@@ -13,8 +13,8 @@
  *     documentation and/or other materials provided with the distribution.
  *  3. The name of the author may not be used to endorse or promote
  *     products derived from this software without specific prior written
- *     permission.
- *
+ *     permission. 
+ * 
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
  * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -28,36 +28,13 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*
- * uIP settings (see Contiki/uIP documentation).
- */
+#include <picoos.h>
+#include <picoos-u.h>
+#include "net-test.h"
 
-#define UIP_CONF_MAX_CONNECTIONS 4
-#define UIP_CONF_MAX_LISTENPORTS 2
-
-// this gives default tcp mtu, 536 bytes
-#define UIP_CONF_BUFFER_SIZE     590
-
-#define UIP_CONF_UDP              1
-#define UIP_CONF_UDP_CHECKSUMS    1
-#define UIP_CONF_UDP_CONNS        1
-
-#define UIP_CONF_STATISTICS       1
-#define UIP_CONF_LOGGING          0
-#define UIP_CONF_IPV6       1
-#define UIP_CONF_ROUTER     0
-
-/*
- * Socket layer settings.
- */
-#define NETCFG_SOCKETS 1
-#define NETCFG_TELNETD 1
-
-/*
- * Driver
- */
-
-//#define NETCFG_EA_QUICKSTART	1
-#define NETCFG_DRIVER_UNIX 0 // 1=compile, 2=default
-#define NETCFG_DRIVER_CS8900A 0
-#define NETCFG_DRIVER_ENC28J60 2
+int main(int argc, char **argv)
+{
+  uosInit();
+  nosInit(mainTask, NULL, 10, 600, 200);
+  return 0;
+}
