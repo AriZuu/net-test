@@ -88,7 +88,46 @@ void enc28j60_spi_init(void)
   USART_InitSync(USART0, &spiConfig);
 
   USART0->ROUTE = USART_ROUTE_TXPEN | USART_ROUTE_RXPEN | USART_ROUTE_CLKPEN | USART_ROUTE_LOCATION_LOC0;
+
+#ifdef ENC28J60_USE_INTERRUPTS
+
+  // Configure UEXT enc28j60 interrupt line.
+
+   CMU_ClockEnable(cmuClock_GPIO, true);
+   GPIO_PinModeSet(gpioPortD, 7, gpioModeInputPullFilter, 1);
+   GPIO_IntConfig(gpioPortD, 7, false, true, true);
+
+   NVIC_EnableIRQ(GPIO_ODD_IRQn);
+   NVIC_SetPriority(GPIO_ODD_IRQn, PORT_PENDSV_PRI - 1);
+
+#endif
 }
+
+#ifdef ENC28J60_USE_INTERRUPTS
+void GPIO_ODD_IRQHandler(void)
+{
+  c_pos_intEnter();
+
+  GPIO_IntClear((1 << 7));
+
+  uint8_t eir;
+  uint8_t pktCnt;
+
+  eir = enc28j60_Register_Read(EIR);
+  pktCnt = enc28j60_Register_Read(EPKTCNT);
+
+  if (pktCnt > 0) {
+
+    enc28j60_Disable_Global_Interrupts();
+    netInterrupt();
+  }
+
+  if (eir & EIR_PKTIF)
+    enc28j60_Bitfield_Clear(EIR, EIR_PKTIF);
+
+  c_pos_intExitQuick();
+}
+#endif
 
 /**
  * Selects an ENC28J60 chip by bringing the chip's CS low.
