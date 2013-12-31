@@ -44,6 +44,7 @@ COMMON_SRC=../net-common
 SRC_TXT =	 	$(COMMON_SRC)/net-test.c \
 						$(COMMON_SRC)/shell.c \
 						startup.c \
+						main.c \
 						enc28j60_util.c
 		
 SRC_HDR = 
@@ -59,6 +60,7 @@ CMSIS_DEFINES=EFM32G210F128
 export CMSIS_INCLUDES CMSIS_DEFINES CMSIS_FAMILY
 
 DIR_USRINC +=	$(RELROOT)/../picoos-micro  \
+							$(COMMON_SRC) \
 							$(RELROOT)/../picoos-micro/fat/src \
 							$(RELROOT)/../picoos-net \
 							$(RELROOT)/../picoos-net/drivers
