@@ -545,4 +545,6 @@
 #define PORTCFG_VECTORS 1
 #define PORTCFG_CLOCK_SYSTICK 0
 #define PORTCFG_CLOCK_RTC 1
+#define PORTCFG_RTC_LFXO 1
+
 #endif /* _POSCFG_H */
