@@ -111,8 +111,75 @@ void enc28j60_spi_init(void) {
   SPI_Cmd(SPI1, ENABLE);
 
 #ifdef ENC28J60_USE_INTERRUPTS
+
+  EXTI_InitTypeDef EXTI_InitStructure;
+
+  // Configure UEXT enc28j60 interrupt line.
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_40MHz;
+  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+  // Connect EXTI
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+  SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOB, EXTI_PinSource6);
+
+  /* Configure Button EXTI line */
+  EXTI_DeInit();
+  EXTI_InitStructure.EXTI_Line = EXTI_Line6;
+  EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
+  EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+  EXTI_Init(&EXTI_InitStructure);
+
+  NVIC_EnableIRQ(EXTI9_5_IRQn);
+  NVIC_SetPriority(EXTI9_5_IRQn, PORT_PENDSV_PRI - 1);
+
 #endif
 }
+
+#ifdef ENC28J60_USE_INTERRUPTS
+void EXTI9_5_IRQHandler(void)
+{
+  c_pos_intEnter();
+
+  EXTI_ClearITPendingBit(EXTI_Line6);
+
+  uint8_t eir;
+  uint8_t pktCnt;
+
+  eir = enc28j60_Register_Read(EIR);
+  pktCnt = enc28j60_Register_Read(EPKTCNT);
+
+  if (pktCnt > 0 || (eir & EIR_PKTIF) || (eir & EIR_RXERIF)) {
+
+    enc28j60_Disable_Global_Interrupts();
+    netInterrupt();
+  }
+
+  c_pos_intExitQuick();
+}
+
+/**
+ * Enable the host microcontroller's pin interrupts that are connected to the
+ * ethernet controller's INT pins.
+ */
+void enc28j60_InterruptPin_Enable(void) {
+
+  NVIC_EnableIRQ(EXTI9_5_IRQn);
+}
+
+/**
+ * Disable the host microcontroller's pin interrupts that are connected to the
+ * ethernet controller's INT pins.
+ */
+void enc28j60_InterruptPin_Disable(void) {
+
+  NVIC_DisableIRQ(EXTI9_5_IRQn);
+}
+#endif
 
 /**
  * Selects an ENC28J60 chip by bringing the chip's CS low.
