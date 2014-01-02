@@ -116,16 +116,31 @@ void GPIO_ODD_IRQHandler(void)
   eir = enc28j60_Register_Read(EIR);
   pktCnt = enc28j60_Register_Read(EPKTCNT);
 
-  if (pktCnt > 0) {
+  if (pktCnt > 0 || (eir & EIR_PKTIF) || (eir & EIR_RXERIF)) {
 
     enc28j60_Disable_Global_Interrupts();
     netInterrupt();
   }
 
-  if (eir & EIR_PKTIF)
-    enc28j60_Bitfield_Clear(EIR, EIR_PKTIF);
-
   c_pos_intExitQuick();
+}
+
+/**
+ * Enable the host microcontroller's pin interrupts that are connected to the
+ * ethernet controller's INT pins.
+ */
+void enc28j60_InterruptPin_Enable(void) {
+
+  GPIO_IntEnable(1 << 7);
+}
+
+/**
+ * Disable the host microcontroller's pin interrupts that are connected to the
+ * ethernet controller's INT pins.
+ */
+void enc28j60_InterruptPin_Disable(void) {
+
+  GPIO_IntDisable(1 << 7);
 }
 #endif
 
