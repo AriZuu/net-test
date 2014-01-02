@@ -44,6 +44,7 @@ COMMON_SRC=../net-common
 SRC_TXT =	 	$(COMMON_SRC)/net-test.c \
 						$(COMMON_SRC)/shell.c \
 						main.c \
+						startup.c \
 						enc28j60_util.c
 		
 SRC_HDR = 

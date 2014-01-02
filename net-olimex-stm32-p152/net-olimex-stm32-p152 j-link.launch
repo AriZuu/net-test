@@ -5,7 +5,7 @@
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.doReset" value="false"/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.imageFileName" value=""/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.imageOffset" value=""/>
-<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.initCommands" value="set remote memory-write-packet-size 1024&#13;&#10;set remote memory-write-packet-size fixed&#13;&#10;monitor flash download = 1&#13;&#10;monitor reset&#13;&#10;load bin/cortex-m-deb/out/enc.elf&#13;&#10;monitor reg r13 = (0x00000000)&#13;&#10;monitor reg pc = (0x00000004&#13;&#10;"/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.initCommands" value="set remote memory-write-packet-size 1024&#13;&#10;set remote memory-write-packet-size fixed&#13;&#10;monitor flash download = 1&#13;&#10;monitor reset&#13;&#10;load bin/cortex-m-deb/out/net.elf&#13;&#10;monitor reg r13 = (0x00000000)&#13;&#10;monitor reg pc = (0x00000004&#13;&#10;"/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.ipAddress" value="localhost"/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.jtagDevice" value="Generic TCP/IP"/>
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.loadImage" value="false"/>
@@ -36,7 +36,7 @@
 <stringAttribute key="org.eclipse.cdt.launch.FORMAT" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&lt;contentList/&gt;"/>
 <stringAttribute key="org.eclipse.cdt.launch.GLOBAL_VARIABLES" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;globalVariableList/&gt;&#13;&#10;"/>
 <stringAttribute key="org.eclipse.cdt.launch.MEMORY_BLOCKS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;memoryBlockExpressionList/&gt;&#13;&#10;"/>
-<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="bin/cortex-m-deb/out/enc.elf"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="bin/cortex-m-deb/out/net.elf"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="net-olimex-stm32-p152"/>
 <booleanAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_AUTO_ATTR" value="true"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_ID_ATTR" value="cdt.managedbuild.toolchain.gnu.cross.base.447242605"/>
