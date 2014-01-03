@@ -43,7 +43,7 @@
 #define UIP_CONF_UDP_CONNS        1
 
 #define UIP_CONF_STATISTICS       1
-#define UIP_CONF_LOGGING          0
+#define UIP_CONF_LOGGING          1
 #define UIP_CONF_IPV6       1
 #define UIP_CONF_ROUTER     0
 
