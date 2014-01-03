@@ -81,6 +81,8 @@ void initNetwork()
 
 void mainTask(void *arg)
 {
+  uosBootDiag();
+
   nosPrint("Main task startup.\n");
 
   initNetwork();
