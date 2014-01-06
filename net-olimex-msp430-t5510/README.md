@@ -1,1 +1,1 @@
-picoos-net test for Olimex EM-32G210F128-H and MOD-ENC28J60.
+picoos-net test for Olimex MSP430-T5510 and MOD-ENC28J60.
