@@ -52,6 +52,7 @@
  */
 #define NETCFG_SOCKETS 1
 #define NETCFG_TELNETD 1
+#define POSCFG_NET_STACK_SIZE 200
 
 /*
  * Driver
