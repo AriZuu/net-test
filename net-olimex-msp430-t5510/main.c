@@ -40,6 +40,7 @@ int main(int argc, char **argv)
 
   UCSCTL6 |= XCAP0 + XCAP1;
 
+  // LED pins
   PJDIR |= BIT2 + BIT3;
   PJOUT |= BIT2 + BIT3;
 
