@@ -28,6 +28,13 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "testcfg.h"
+
+
+#ifndef SHELL_STACK_SIZE 
+#define SHELL_STACK_SIZE 1100
+#endif
+
 void shellTask(void* arg);
 void mainTask(void* arg);
 void initNetwork(void);
