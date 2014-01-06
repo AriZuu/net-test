@@ -1,11 +1,1 @@
-*.LST
-*.d
-*.lst
-*.__i
-*.lnp
-*.plg
-*.dep
-*.elf
-cortextest.uvgui.ArJo
 bin
-/test-stm32.uvgui.ArJo
