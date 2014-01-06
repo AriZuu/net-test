@@ -42,10 +42,16 @@ static int acceptHook(NetSock* sock, int lport)
 {
   POSTASK_t task;
 
+#ifdef __MSP430__
+  task = posTaskCreate(shellTask, (void*)sock, 2, 350);
+#else
   task = posTaskCreate(shellTask, (void*)sock, 2, 1100);
+#endif
   if (task == NULL) {
 
+#if NOSCFG_FEATURE_CONOUT == 1
     nosPrint("net: out of tasks.");
+#endif
     return -1;
   }
 
@@ -55,7 +61,9 @@ static int acceptHook(NetSock* sock, int lport)
 
 void initNetwork()
 {
+#if NOSCFG_FEATURE_CONOUT == 1
   nosPrint("Starting network.\n");
+#endif
 
   uip_setethaddr(ethaddr);
 
@@ -83,7 +91,9 @@ void mainTask(void *arg)
 {
   uosBootDiag();
 
+#if NOSCFG_FEATURE_CONOUT == 1
   nosPrint("Main task startup.\n");
+#endif
 
   initNetwork();
   while (true)
