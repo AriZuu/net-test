@@ -46,6 +46,7 @@
 #define UIP_CONF_LOGGING          1
 #define UIP_CONF_IPV6       1
 #define UIP_CONF_ROUTER     0
+#define UIP_CONF_IPV6_RPL 0
 
 /*
  * Socket layer settings.
