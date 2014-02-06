@@ -67,11 +67,23 @@ void initNetwork()
 
   uip_ipaddr_t ipaddr;
 
+#ifdef unix
+
+  uip_ipaddr(&ipaddr, 192, 168, 0, 2);
+  uip_sethostaddr(&ipaddr);
+
+  uip_ipaddr(&ipaddr, 192, 168, 0, 1);
+  uip_setdraddr(&ipaddr);
+
+#else
+
   uip_ipaddr(&ipaddr, 192, 168, 60, 213);
   uip_sethostaddr(&ipaddr);
 
   uip_ipaddr(&ipaddr, 192, 168, 60, 1);
   uip_setdraddr(&ipaddr);
+
+#endif
 
   uip_ipaddr(&ipaddr, 255, 255, 255, 0);
   uip_setnetmask(&ipaddr);
