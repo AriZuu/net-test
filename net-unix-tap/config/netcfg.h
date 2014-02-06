@@ -32,6 +32,7 @@
  * uIP settings (see Contiki/uIP documentation).
  */
 
+#define UIP_CONF_LLH_LEN 14
 #define UIP_CONF_MAX_CONNECTIONS 20
 #define UIP_CONF_MAX_LISTENPORTS 1
 
@@ -47,6 +48,7 @@
 #define UIP_CONF_IPV6       1
 #define UIP_CONF_ROUTER     0
 #define UIP_CONF_IPV6_RPL 0
+#define UIP_CONF_ICMP6 0
 
 /*
  * Socket layer settings.
