@@ -37,7 +37,7 @@
 #define UIP_CONF_MAX_LISTENPORTS 1
 
 // this gives default tcp mtu, 536 bytes
-#define UIP_CONF_BUFFER_SIZE     590
+#define UIP_CONF_BUFFER_SIZE     1514
 
 #define UIP_CONF_UDP              1
 #define UIP_CONF_UDP_CHECKSUMS    1
@@ -45,10 +45,11 @@
 
 #define UIP_CONF_STATISTICS       1
 #define UIP_CONF_LOGGING          1
-#define UIP_CONF_IPV6       1
-#define UIP_CONF_ROUTER     0
-#define UIP_CONF_IPV6_RPL 0
-#define UIP_CONF_ICMP6 0
+#define UIP_CONF_IPV6             1
+#define UIP_CONF_ROUTER           0
+#define UIP_CONF_IPV6_RPL         0
+#define UIP_CONF_ICMP6            0
+#define UIP_CONF_IPV6_QUEUE_PKT   0
 
 /*
  * Socket layer settings.
