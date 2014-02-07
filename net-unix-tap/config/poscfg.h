@@ -254,7 +254,7 @@
  * This define must be set to the tickrate of the timer
  * interrupt (= timer ticks per second).
  */
-#define HZ                   1000  /* timer ticks per second */
+#define HZ                   100  /* timer ticks per second */
 
 /**
  * Defines the crystal clock in HZ
