@@ -52,6 +52,8 @@
  * Socket layer settings.
  */
 #define NETCFG_SOCKETS 1
+#define NETCFG_BSD_SOCKETS 1
+#define NETCFG_COMPAT_SOCKETS 1
 #define NETCFG_TELNETD 1
 
 /*

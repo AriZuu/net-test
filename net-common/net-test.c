@@ -31,6 +31,8 @@
 #include <picoos.h>
 #include <picoos-u.h>
 #include <picoos-net.h>
+#include <stddef.h>
+#include <sys/socket.h>
 #include "net-test.h"
 
 static struct uip_eth_addr ethaddr = {
@@ -38,6 +40,7 @@ static struct uip_eth_addr ethaddr = {
   { 0x00, 0xbd, 0x3b, 0x33, 0x04, 0xd5 }
 };
 
+#if NETCFG_BSD_SOCKETS != 1
 static int acceptHook(NetSock* sock, int lport)
 {
   POSTASK_t task;
@@ -54,6 +57,7 @@ static int acceptHook(NetSock* sock, int lport)
   POS_SETTASKNAME(task, "shell");
   return 0;
 }
+#endif
 
 void initNetwork()
 {
@@ -90,10 +94,11 @@ void initNetwork()
 #endif
 
   netInit();
-  netSockAcceptHookSet(acceptHook);
-
-  uip_listen(uip_htons(23));
 }
+
+#if UIP_CONF_IPV6 && NETCFG_BSD_SOCKETS
+static struct in6_addr in6addr_any = IN6ADDR_ANY_INIT;
+#endif
 
 void mainTask(void *arg)
 {
@@ -104,8 +109,60 @@ void mainTask(void *arg)
 #endif
 
   initNetwork();
+#if NETCFG_BSD_SOCKETS == 1
+
+  int lsn;
+  socklen_t addrlen;
+#if UIP_CONF_IPV6
+
+  struct sockaddr_in6 me;
+  struct sockaddr_in6 peer;
+
+  me.sin6_family = AF_INET6;
+  me.sin6_addr = in6addr_any;
+  me.sin6_port = htons(23);
+
+#else
+
+  struct sockaddr_in me;
+  struct sockaddr_in peer;
+
+  me.sin_family = AF_INET;
+  me.sin_addr.s_addr = INADDR_ANY;
+  me.sin_port = htons(23);
+
+#endif
+
+  lsn = socket(AF_INET, SOCK_STREAM, 0);
+  
+  bind(lsn, (struct sockaddr*)&me, sizeof(me));
+  listen(lsn, 5);
+
+  while (true) {
+
+    int s = accept(lsn, (struct sockaddr*)&peer, &addrlen);
+    POSTASK_t task;
+
+    task = posTaskCreate(shellTask, (void*)(intptr_t)s, 2, SHELL_STACK_SIZE);
+    if (task == NULL) {
+
+#if NOSCFG_FEATURE_CONOUT == 1
+      nosPrint("net: out of tasks.");
+#endif
+      closesocket(s);
+    }
+
+    POS_SETTASKNAME(task, "shell");
+  }
+
+#else
+
+  netSockAcceptHookSet(acceptHook);
+  uip_listen(uip_htons(23));
+
   while (true)
     posTaskSleep(MS(10000));
+#endif
 }
 
 

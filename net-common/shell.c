@@ -33,6 +33,7 @@
 
 #include "net-test.h"
 #include <string.h>
+#include "sys/socket.h"
 
 static void help(NetTelnet* t, char* buf)
 {
@@ -94,8 +95,10 @@ static void osStats(NetTelnet* t, char* buf)
   int eventCount = 0;
   struct PICOTASK* task;
   struct PICOEVENT* event;
+#ifndef unix
   int freeStack;
   char* sp;
+#endif
 
  // posTaskSchedLock();
   task = picodeb_tasklist;
@@ -151,7 +154,7 @@ static void osStats(NetTelnet* t, char* buf)
 void shellTask(void* arg)
 {
   NetTelnet tel;
-  NetSock* sock = (NetSock*) arg;
+  int sock = (intptr_t) arg;
   int i;
   bool go = true;
   static char buf[512];
@@ -187,6 +190,6 @@ void shellTask(void* arg)
 
   } while (go);
 
-  netSockClose(sock);
+  closesocket(sock);
 }
 
