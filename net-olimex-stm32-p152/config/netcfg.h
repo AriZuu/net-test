@@ -45,7 +45,7 @@
 
 #define UIP_CONF_STATISTICS       1
 #define UIP_CONF_LOGGING          1
-#define UIP_CONF_IPV6       1
+#define UIP_CONF_IPV6       0
 #define UIP_CONF_ROUTER     0
 
 /*
@@ -63,5 +63,6 @@
 //#define NETCFG_EA_QUICKSTART	1
 #define NETCFG_DRIVER_UNIX 0 // 1=compile, 2=default
 #define NETCFG_DRIVER_CS8900A 0
-#define NETCFG_DRIVER_ENC28J60 2
+#define NETCFG_DRIVER_HDLC_BRIDGE 2
+#define NETCFG_DRIVER_ENC28J60 0
 #define ENC28J60_USE_INTERRUPTS 1

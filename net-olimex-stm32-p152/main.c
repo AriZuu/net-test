@@ -30,12 +30,16 @@
 
 #include <picoos.h>
 #include <picoos-u.h>
+#include <picoos-net.h>
 #include "net-test.h"
 
 int main(int argc, char **argv)
 {
-#if PORTCFG_CON_USART == 1
+#if PORTCFG_CON_USART == 1 || NETCFG_DRIVER_HDLC_BRIDGE > 0 
   GPIO_InitTypeDef  GPIO_InitStructure;
+#endif
+
+#if PORTCFG_CON_USART == 1
 
   // Configure usart2 pins.
 
@@ -61,6 +65,24 @@ int main(int argc, char **argv)
   GPIO_Init(GPIOD, &GPIO_InitStructure);
 
   GPIO_WriteBit(GPIOD, GPIO_Pin_0, Bit_RESET);
+
+#endif
+
+#if NETCFG_DRIVER_HDLC_BRIDGE > 0
+
+  // Configure usart3 pins, HLK-RM04 is connected to it.
+
+  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_40MHz;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+
+  GPIO_PinAFConfig(GPIOC, GPIO_PinSource10, GPIO_AF_USART3);
+  GPIO_PinAFConfig(GPIOC, GPIO_PinSource11, GPIO_AF_USART3);
 
 #endif
 

@@ -36,6 +36,8 @@
 #include <picoos-net.h>
 #include <picoos-u.h>
 
+#if NETCFG_DRIVER_ENC28J60 > 0
+
 #include "enc28j60.h"
 
 #define CS_PIN GPIO_Pin_12
@@ -238,3 +240,5 @@ uint8_t enc28j60_spi_read(void) {
   // Return received byte
   return SPI_I2S_ReceiveData(SPI1);
 }
+
+#endif
