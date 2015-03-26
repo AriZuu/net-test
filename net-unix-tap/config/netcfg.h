@@ -50,6 +50,7 @@
 #define UIP_CONF_IPV6_RPL         0
 #define UIP_CONF_ICMP6            0
 #define UIP_CONF_IPV6_QUEUE_PKT   0
+#define UIP_CONF_BROADCAST        1
 
 /*
  * Socket layer settings.
