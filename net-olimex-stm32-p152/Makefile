@@ -55,21 +55,15 @@ SRC_LIB =
 CDEFINES += 
 
 # CMSIS setup
-CMSIS=stm32l1xx
-CMSIS_INCLUDES=$(CURRENTDIR)/../../cmsis-ports/stm32l1xx/inc
-CMSIS_DEFINES=STM32L1XX_MD USE_STDPERIPH_DRIVER
-export CMSIS_DEFINES
-export CMSIS_INCLUDES
+CMSIS_MODULES=$(CURRENTDIR)/../../cmsis-ports/stm32l1xx
+STM32_CHIP=STM32L1XX_MD
+export STM32_CHIP
 
-DIR_USRINC +=	$(RELROOT)/../picoos-micro  \
-							$(COMMON_SRC) \
-							$(RELROOT)/../picoos-micro/fat/src \
-							$(RELROOT)/../picoos-net \
-							$(RELROOT)/../picoos-net/drivers
+DIR_USRINC +=	$(COMMON_SRC)
 
 DIR_CONFIG = $(CURRENTDIR)/config
 DIR_OUTPUT = $(CURRENTDIR)/bin
-MODULES +=  $(RELROOT)/../cmsis-ports/stm32l1xx $(RELROOT)/../picoos-net $(RELROOT)/../picoos-micro
+MODULES +=   $(RELROOT)/../picoos-net $(RELROOT)/../picoos-micro
 
 POSTLINK1 = arm-none-eabi-size $(TARGETOUT)
 POSTLINK2 = 

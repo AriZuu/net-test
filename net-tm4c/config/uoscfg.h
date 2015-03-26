@@ -29,4 +29,4 @@
  */
 
 #define _FS_READONLY 1
-#define UOSCFG_SPIN_USECS 2
+#define UOSCFG_SPIN_USECS 0

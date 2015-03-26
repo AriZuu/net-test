@@ -55,17 +55,15 @@ SRC_LIB =
 CDEFINES += 
 
 # CMSIS setup
-# CMSIS setup
-CMSIS_INCLUDES=$(CURRENTDIR)/../../cmsis-ports/tiva/tivaware $(CURRENTDIR)/../../cmsis-ports/tiva/inc 
-CMSIS_DEFINES=TM4C1294NCPDT PART_TM4C1294NCPDT  gcc
-export CMSIS_DEFINES
-export CMSIS_INCLUDES
+CMSIS_MODULES=$(CURRENTDIR)/../../cmsis-ports/tiva
+TIVA_DEFINES=TM4C1294NCPDT PART_TM4C1294NCPDT
+export TIVA_DEFINES
 
 DIR_USRINC +=	$(COMMON_SRC)
 
 DIR_CONFIG = $(CURRENTDIR)/config
 DIR_OUTPUT = $(CURRENTDIR)/bin
-MODULES += ../../cmsis-ports/tiva ../../picoos-net ../../picoos-micro
+MODULES +=  ../../picoos-net ../../picoos-micro
 
 POSTLINK1 = arm-none-eabi-size $(TARGETOUT)
 POSTLINK2 = arm-none-eabi-objcopy -O binary $(TARGETOUT) net.bin

@@ -55,10 +55,10 @@ SRC_LIB =
 CDEFINES += 
 
 # CMSIS setup
-CMSIS_FAMILY=EFM32G
-CMSIS_INCLUDES=$(CURRENTDIR)/../../cmsis-ports/efm32/inc $(CURRENTDIR)/../../cmsis-ports/efm32/device/$(CMSIS_FAMILY)/inc
-CMSIS_DEFINES=EFM32G210F128
-export CMSIS_INCLUDES CMSIS_DEFINES CMSIS_FAMILY
+EFM32_FAMILY=EFM32G
+CMSIS_MODULES=$(CURRENTDIR)/../../cmsis-ports/efm32
+EFM32_CHIP=EFM32G210F128
+export EFM32_FAMILY EFM32_CHIP
 
 DIR_USRINC +=	$(RELROOT)/../picoos-micro  \
 							$(COMMON_SRC) \
@@ -68,7 +68,7 @@ DIR_USRINC +=	$(RELROOT)/../picoos-micro  \
 		
 DIR_CONFIG = $(CURRENTDIR)/config
 DIR_OUTPUT = $(CURRENTDIR)/bin
-MODULES +=  $(RELROOT)/../cmsis-ports/efm32 $(RELROOT)/../picoos-net $(RELROOT)/../picoos-micro
+MODULES +=   $(RELROOT)/../picoos-net $(RELROOT)/../picoos-micro
 
 POSTLINK1 = arm-none-eabi-size $(TARGETOUT)
 POSTLINK2 = 
