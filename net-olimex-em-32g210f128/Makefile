@@ -36,6 +36,8 @@ CORTEX = m3
 BUILD = DEBUG
 
 LD_SCRIPTS=efm32.ld
+NETCFG_STACK = 4
+export NETCFG_STACK
 
 include $(RELROOT)make/common.mak
 

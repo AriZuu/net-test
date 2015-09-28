@@ -34,6 +34,8 @@ MCU  = msp430f5510
 export MCU
 
 BUILD ?= DEBUG
+NETCFG_STACK = 4
+export NETCFG_STACK
 
 include $(RELROOT)make/common.mak
 

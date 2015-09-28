@@ -35,6 +35,8 @@ CORTEX = m4
 export CORTEX
 
 BUILD = DEBUG
+NETCFG_STACK = 4
+export NETCFG_STACK
 
 LD_SCRIPTS=tiva.ld
 
