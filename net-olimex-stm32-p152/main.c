@@ -35,11 +35,11 @@
 
 int main(int argc, char **argv)
 {
-#if PORTCFG_CON_USART == 1 || NETCFG_DRIVER_HDLC_BRIDGE > 0 
+#if PORTCFG_CON_USART == 2 || NETCFG_DRIVER_HDLC_BRIDGE > 0 
   GPIO_InitTypeDef  GPIO_InitStructure;
 #endif
 
-#if PORTCFG_CON_USART == 1
+#if PORTCFG_CON_USART == 2
 
   // Configure usart2 pins.
 
