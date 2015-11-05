@@ -41,6 +41,10 @@ int main(int argc, char **argv)
 
 #if PORTCFG_CON_USART == 2
 
+  // Enable USART clock
+
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
+
   // Configure usart2 pins.
 
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOD, ENABLE);
