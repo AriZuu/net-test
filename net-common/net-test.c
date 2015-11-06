@@ -145,6 +145,7 @@ static struct in6_addr in6addr_any = IN6ADDR_ANY_INIT;
 
 void mainTask(void *arg)
 {
+  uosInit();
   uosBootDiag();
 
 #if NOSCFG_FEATURE_CONOUT == 1

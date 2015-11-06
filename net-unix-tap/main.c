@@ -34,7 +34,6 @@
 
 int main(int argc, char **argv)
 {
-  uosInit();
   nosInit(mainTask, NULL, 10, 600, 200);
   return 0;
 }
