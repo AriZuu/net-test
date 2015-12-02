@@ -35,6 +35,7 @@
 #include <picoos.h>
 #include <picoos-net.h>
 #include <picoos-u.h>
+#include <port_irq.h>
 
 #include "enc28j60.h"
 

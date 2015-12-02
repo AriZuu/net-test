@@ -36,7 +36,7 @@
 #include "net-test.h"
 
 #ifdef TESTCFG_DHCP
-#include "net/dhcpc.h"
+#include "net/ip/dhcpc.h"
 #endif
 
 #ifndef TESTCFG_REAL_ETHADDR

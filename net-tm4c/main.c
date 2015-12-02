@@ -34,7 +34,7 @@
 #include "net-test.h"
 
 #include "sys/socket.h"
-#include "net/dhcpc.h"
+#include "net/ip/dhcpc.h"
 #include "inc/hw_types.h"
 #include "inc/hw_memmap.h"
 #include "driverlib/sysctl.h"

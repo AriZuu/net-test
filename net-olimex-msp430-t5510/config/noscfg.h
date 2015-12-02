@@ -216,7 +216,7 @@ extern void *__heap_end;
  * @note  The platform port must support console output, it must
  *        export the function ::p_putchar.
  */
-#define NOSCFG_FEATURE_CONOUT        0
+#define NOSCFG_FEATURE_CONOUT        1
 
 /** Enable generic printf functions.
  * The nano layer supports a set of realy generic printf functions.

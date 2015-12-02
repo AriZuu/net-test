@@ -30,3 +30,4 @@
 
 #define _FS_READONLY 1
 #define UOSCFG_SPIN_USECS 0
+#define UOSCFG_MAX_OPEN_FILES 6
